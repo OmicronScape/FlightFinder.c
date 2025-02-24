@@ -29,16 +29,39 @@ void add_duration(float, int, int);        /*                               */
 void find_routes(int, int, int, int);      /* Function for questions 3-4  */
 void request_departure_time(int*, int*);   /* Function for question 1      */
 
+/*                  |---------PROGRAM USAGE INSTRUCTIONS---------|
+    The program allows the user to select a departure city and a destination city,  
+    then calculates the available flights (direct or with a layover).
+
+    - 1st step --> Function "request_departure_time":  
+                Asks the user to enter the departure time in a four-digit format  
+                and ensures that the input is valid (using defensive programming).  
+    - 2nd step --> Function "print_city_options":  
+                Displays the list of available cities with numerical indexing.  
+    - 3rd step --> Function "get_city_index":  
+                Checks whether the selected departure and destination cities are valid  
+                and returns the corresponding index in the cities array.  
+    - 4th step --> Function "find_routes":  
+                Searches for available flights from the departure city to the destination city.  
+                If a direct flight exists, it displays its duration.  
+                If not, it looks for flights with a single layover.  
+    - 5th step --> Function "add_duration":  
+                Calculates the arrival time by adding the flight duration to the departure time.  
+                If the arrival is on the next day, it displays a relevant message.  
+
+    The program checks all possible routes and displays the available options to the user.
+*/  
+
 int main()
 {
     int departure_city, arrival_city;
     int hours, minutes;
 
-    /* Question 1. Enter time and defensive programming */
+    /* Enter time and defensive programming */
     /* Continuous input from the user until a valid time is given */
     request_departure_time(&hours, &minutes);
 
-    /* Question 2. Print city options. */
+    /* Print city options. */
     print_city_options();
     /* Question 2. Defensive programming for selecting departure city */
     do 
@@ -74,7 +97,7 @@ int main()
     return 0;
 }
 
-/* Question 1 */
+/* */
 /* Function to enter departure time */
 void request_departure_time(int *hours, int *minutes){
     int time;
@@ -97,7 +120,7 @@ void request_departure_time(int *hours, int *minutes){
     } while (time < 0 || time > 2359 || *minutes < 0 || *minutes >= 60);
 }
 
-/* Question 2. Print city options */
+/*Print city options */
 /* Function to print available cities */
 void print_city_options()
 {
@@ -120,8 +143,6 @@ int get_city_index(int choice)
         return -1;
     }
 }
-
-/* Question 3 */
 /* Here the flight duration for each option will be printed. */
 /* When you implement question 4 you can integrate the add_duration function here which will print the arrival time */
 void find_routes(int departure, int arrival, int departure_hour, int departure_minutes)
@@ -161,7 +182,7 @@ void find_routes(int departure, int arrival, int departure_hour, int departure_m
     }
 }
 
-/* Question 4 */
+
 /* The function will have parameters for hours, minutes, and duration.  */
 /* The duration will be added to the hours and minutes and the new time will be printed */
 /* If the new time is the next day, this information should also be printed */
